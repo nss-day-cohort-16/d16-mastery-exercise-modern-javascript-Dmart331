@@ -7,12 +7,9 @@ $(".playa").hide();
 let playerOne = new Robot.Robot();
 let playerTwo = new Robot.Robot();
 
-
 $("#submit").click(function() {
     playerOne.playerName = $('#playerOne').val();
     playerTwo.playerName = $('#playerTwo').val();
-    console.log("player One", playerOne);
-    console.log("player Two", playerTwo);
     $("#gameStart").hide();
     $("#robotSelect").show();
 });
@@ -65,8 +62,6 @@ $('.playerTwoCards').click(function(event) {
     }
 });
 
-
-
 $("#fight").click(function() {
     $("#robotSelect").hide();
     $("#robotFight").show();
@@ -81,39 +76,26 @@ $("#fight").click(function() {
 });
 
 $('#attk').click(function(event) {
-
-
-
-
-
     if (event) {
         playerOne.prototype.damage = Math.floor(Math.random() * (20 - 11) + 11);
         playerTwo.prototype.damage = Math.floor(Math.random() * (20 - 11) + 11);
         $("#winnerOut").html(" Player One Damage This Hit--" + playerOne.prototype.damage + " | Player Two Damage This Hit --" + playerTwo.prototype.damage);
         playerOne.health = (playerOne.health) - (playerTwo.prototype.damage);
         $(".oneHealth").html("Health: " + playerOne.health);
-
         if (playerOne.health > 0) {
-
             playerTwo.health = (playerTwo.health) - (playerOne.prototype.damage);
             $(".twoHealth").html("Health: " + playerTwo.health);
-
             if (playerTwo.health <= 0) {
                 $('#attk').unbind().disabled = true;
                 $('#attk').hide();
                 $("#winnerOut").html("K.O.! " + playerOne.playerName + 'Wins!');
                 $(".twoHealth").html("Health: 0");
             }
-
-
         } else {
             $('#attk').unbind().disabled = true;
             $('#attk').hide();
             $("#winnerOut").html("K.O.! " + playerTwo.playerName + " WINS!");
             $(".oneHealth").html("Health: 0");
-
-
         }
     }
-
 });
